@@ -4,7 +4,7 @@
     <p><strong>persönlicher, modularer Home-/Server-Assistent</strong></p>
 </div>
 
-[![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://sonnytricky.github.io/HOMEBOT/)
+![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)(https://sonnytricky.github.io/HOMEBOT/)
 [![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
 
 
