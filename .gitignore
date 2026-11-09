@@ -59,7 +59,7 @@
 !/.github/ISSUE_TEMPLATE/feature_request.md
 #!/.github/ISSUE_TEMPLATE/idea.md
 #!/.github/ISSUE_TEMPLATE/task.md
-!/.github/workflows/
+!/.github/workflows/deploy.yml
 !/.github/PULL_REQUEST_TEMPLATE.md
 # ========================================================================
 
@@ -81,9 +81,6 @@
 !/docs/assets/repo-logo.png
 !/docs/assets/images/favicon.png
 !/docs/stylesheets/extra.css
-
-!requirements.txt
-!/zensical.toml
 # ========================================================================
 
 # src/
@@ -108,6 +105,7 @@
 !package-lock.json
 !package.json
 !README.md
-!TODO.md
+!requirements.txt
 !tsconfig.json
+!zensical.toml
 # ========================================================================
