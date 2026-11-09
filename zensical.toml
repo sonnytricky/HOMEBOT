@@ -1,0 +1,205 @@
+# ----------------------------------------------------------------------------
+[project]
+# ----------------------------------------------------------------------------
+
+site_name = "HOMEBOT"
+site_description = ""
+site_author = "sonnytricky"
+# site_url = "https://www.example.com/"
+
+copyright = "© 2026 sonnytricky"
+
+repo_name = "sonnytricky/HOMEBOT"
+repo_url = "https://github.com/sonnytricky/HOMEBOT"
+
+#edit_uri = "edit/main/docs/"
+
+docs_dir = "docs"
+site_dir = "site"
+
+
+# ----------------------------------------------------------------------------
+# navigation
+# ----------------------------------------------------------------------------
+
+nav = [
+    {"Home" = "index.md"},
+
+    {"Installation" = [
+        "PROJEKTE/HOMELAB-DOKU/index.md",
+        "PROJEKTE/HOMELAB-DOKU/X600.md",
+        "PROJEKTE/HOMELAB-DOKU/Proxmox-gesamt.md",
+    ]},
+
+    {"Einrichtung" = [
+        "PROJEKTE/HOMELAB-DOKU/index.md",
+        "PROJEKTE/HOMELAB-DOKU/X600.md",
+        "PROJEKTE/HOMELAB-DOKU/Proxmox-gesamt.md",
+    ]},
+
+    {"Tests" = [
+        "PROJEKTE/HOMELAB-DOKU/index.md",
+        "PROJEKTE/HOMELAB-DOKU/X600.md",
+        "PROJEKTE/HOMELAB-DOKU/Proxmox-gesamt.md",
+    ]},
+]
+
+# ----------------------------------------------------------------------------
+# css und javascript
+# ----------------------------------------------------------------------------
+
+extra_css = ["stylesheets/extra.css"]                                       # der Ordner wurden bereits angelegt
+#extra_javascript = ["javascripts/extra.js"]
+
+# ----------------------------------------------------------------------------
+# Section for configuring theme options
+# ----------------------------------------------------------------------------
+
+[project.theme]
+variant = "modern"                                                          # classic = mklook, modern = zensical-look
+
+#custom_dir = "overrides"                                                    # in diesem ordner kann man die zensical HTML-vorlagen überschreiben, ist auch für die bootstrap-logos
+
+favicon = "assets/images/favicon.png"                                       # der images ordner muss in docs/ sein
+logo = "assets/repo-logo.png"                                               # der assets ordner muss in den docs/sein
+
+language = "de"                                                             # war auf "en"
+
+
+# ----------------------------------------------------------------------------
+# features
+# ----------------------------------------------------------------------------
+
+features = [
+
+    "announce.dismiss",                                                     # Ankündigungen auf dem Header als gelesen markieren
+
+#    "content.action.edit",                                                  # Edit this page on github  # es muss dann noch -> unter [projekt] edit_uri = "edit/main/docs/" stehen
+
+#    "content.action.view",                                                  # View source of this page on github
+
+    "content.code.annotate",                                                # Anmerkungen in Code-Blöcken hinzufügen
+
+    "content.code.copy",                                                    # copy button
+
+#    "content.code.select",                                                  # 
+
+#    "content.footnote.tooltips",                                            # Über dem footer Anmerkungen
+
+    "content.tabs.link",                                                    #
+
+    "content.tooltips",                                                     # Tooltipps müssen in der jeweiligen mk-Datei angegeben werden # [Hover me](https://example.com "I'm a tooltip!")
+
+#    "header.autohide",                                                      # Header verschwindet beim scrollen
+
+#    "navigation.expand",                                                    # Navigaion immer ausgeklappt
+
+#    "navigation.footer",                                                    # Pfeile auf den Footer
+
+    "navigation.indexes",                                                   # Inhaltsverzeichnis auf den index Seiten
+
+    "navigation.instant",                                                   # Klicks funktionieren ohne dass die Seite immer alles läd
+
+    "navigation.instant.prefetch",                                          # Sofortiges Vorladen
+
+#    "navigation.instant.progress",                                          # Fortschritsanzeige
+
+    "navigation.path",                                                      # es steht oben der Pfad 
+
+#    "navigation.prune",                                                     # ob der Text scrollt oder nicht
+
+#    "navigation.sections",                                                  # Navigationsabschnitte
+
+    "navigation.tabs",                                                      # tabs in der Header leiste
+
+    "navigation.tabs.sticky",                                               # linke seitenleiste immer sichtbar
+
+    "navigation.top",                                                       # back-to-top button
+
+    "navigation.tracking",                                                  # Ankerverfolgung der Überschriften
+
+    "search.highlight",                                                     # Bei der Suche werden die Ergebnisse hervorgehoben
+
+    "toc.follow",                                                           # verfolgt die Überschriften
+
+#    "toc.integrate",                                                        # Inhaltsverzeichnis links, wenn aus dann rechts
+]
+
+# ---------------------------------------------------------------------------
+
+# [project.markdown_extensions.abbr]
+[project.markdown_extensions.attr_list]
+# [project.markdown_extensions.def_list]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+
+## Hervorhebungen
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]
+
+# Für die Icons
+[project.markdown_extensions.pymdownx.emoji]
+emoji_index = "zensical.extensions.emoji.twemoji"
+emoji_generator = "zensical.extensions.emoji.to_svg"
+options.custom_icons = ["overrides/.icons"]
+
+# Syntaxhervorhebung für Code-Blöcke
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.snippets]
+
+# ---------------------------------------------------------------------------
+
+#[project.theme.icon]
+#logo = "lucide/smile"
+
+#[project.theme.font]                                                       # ändert die Schriftart
+#text = "Inter"                                                             # ändert die Schriftart
+#code = "Jetbrains Mono"                                                    # ändert die Schriftart
+
+# --------------------------------------------------------------------------- 
+# Hell und Dunkel modus und deren icons
+# --------------------------------------------------------------------------- 
+
+#[[project.theme.palette]]                                                      
+#scheme = "default"
+#toggle.icon = "lucide/sun"
+#toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+#toggle.icon = "lucide/moon"
+#toggle.name = "Switch to light mode"
+
+primary = "orange"                                                           # red pink purple deep purple indigo blue light blue cyan teal green light green lime yellow amber orange deep orange brown grey blue grey black white
+accent = "orange"                                                            # red pink purple deep purple indigo blue light blue cyan teal green light green lime yellow amber orange deep orange
+
+# ----------------------------------------------------------------------------
+# The "extra" section contains miscellaneous settings.
+# ----------------------------------------------------------------------------
+
+# ---------- Soziale Medien
+
+# GitHub
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/sonnytricky"
+name = "sonnytricky on GitHub"
+
+# Instagram
+[[project.extra.social]]
+icon = "fontawesome/brands/instagram"
+link = "https://www.instagram.com/sonnytricky/"
+name = "sonnytricky on Instagram"
+
+# ---------- Footer
+
+[project.extra]
+generator = false
