@@ -3,3 +3,7 @@ node_modules
 .images
 /dist/
 /site/
+/cache/
+/.cache/
+/venv/
+/.venv/

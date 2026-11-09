@@ -1,0 +1,113 @@
+##############################################
+# Alles ignorieren                               # * bedeutet alles
+##############################################
+*
+
+##############################################
+# Verzeichnisse wieder erlauben
+##############################################
+!*/
+
+##############################################
+# Ordner ignorieren
+##############################################
+/node_modules/
+/dist/
+/site/
+/cache/
+/.cache/
+/venv/
+/.venv/
+
+# /.Releases/
+# *.Releases/
+# !*/.Releases/
+# /.aLT/
+# *.aLT/
+# !*/.aLT/
+
+##############################################
+# Verzeichnisse wieder erlauben                  # !*/Unterordner/
+##############################################
+!*/.docs/**/
+!*/.github/ISSUE_TEMPLATE/
+!*/.github/workflows/
+!*/.images/logo/
+!*/.images/screenshots/
+!*/.notes/**
+!*/.vscode/
+!*/docs/**/
+!*/src/**/
+
+##############################################
+# Ausnahme: diese Dateien NICHT ignorieren
+##############################################
+# Beispiel:
+# - für Dateien in Unterordnern                  # !/Pfad/zur/Datein.txt
+# - für einzelne Dateien                         # !Datein.txt
+##############################################
+
+# Dokumentation (Repo intern)
+!/.docs/Projektstruktur.md
+!/.docs/setup/installation.md
+!/.docs/setup/smtp.md
+!/.docs/setup/zensical/Einrichtung_zensical.md
+# ========================================================================
+
+# .github/
+!/.github/ISSUE_TEMPLATE/bug_report.md
+!/.github/ISSUE_TEMPLATE/feature_request.md
+#!/.github/ISSUE_TEMPLATE/idea.md
+#!/.github/ISSUE_TEMPLATE/task.md
+!/.github/workflows/
+!/.github/PULL_REQUEST_TEMPLATE.md
+# ========================================================================
+
+# .images
+!/.images/logo/repo-logo.png
+!/.images/screenshots/Fehlermeldung.jpg
+# ========================================================================
+
+# Notizen
+!/.notes/**
+# ========================================================================
+
+!/.vscode/settings.json
+# ========================================================================
+
+# Projekt Dokumentation
+!/docs/index.md
+
+!/docs/assets/repo-logo.png
+!/docs/assets/images/favicon.png
+!/docs/stylesheets/extra.css
+
+!requirements.txt
+!/zensical.toml
+# ========================================================================
+
+# src/
+!/src/core/
+!/src/jobs/
+!/src/modules/
+!/src/types/job.ts
+!/src/utils/notifier.ts
+!/src/utils/telegram.ts
+
+!/tests/test-email.ts
+!/tests/test-telegram.ts
+
+!.env.example
+!.eslintignore
+!.eslintrc.json
+!.gitattributes
+!.gitignore
+!.prettierignore
+!.prettierrc
+!LICENSE
+!package-lock.json
+!package.json
+!README.md
+!TODO.md
+!tsconfig.json
+# ========================================================================
