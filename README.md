@@ -9,8 +9,16 @@
         <strong>persönlicher, modularer Home-/Server-Assistent</strong>
     </p>
     <p>
+        <a href="https://sonnytricky.github.io/HOMEBOT/">
+            <img src="https://img.shields.io/badge/docs-github%20pages-blue.svg" alt="Dokumentation">
+        </a>
+        &nbsp;
         <a href="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml">
             <img src="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg" alt="Deploy docs">
+        </a>
+        &nbsp;
+        <a href="https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE">
+            <img src="https://img.shields.io/github/license/sonnytricky/HOMEBOT" alt="License">
         </a>
     </p>
 </div>
