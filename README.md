@@ -8,9 +8,12 @@
     <p>
         <strong>persönlicher, modularer Home-/Server-Assistent</strong>
     </p>
+    <p>
+        <a href="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml">
+            <img src="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg" alt="Deploy docs">
+        </a>
+    </p>
 </div>
-
-[![Deploy docs](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml)
 
 ---
 
