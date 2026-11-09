@@ -9,16 +9,16 @@
         <strong>persönlicher, modularer Home-/Server-Assistent</strong>
     </p>
     <p>
-        <a href="https://sonnytricky.github.io/HOMEBOT/">
-            <img src="https://img.shields.io/badge/docs-github%20pages-blue.svg" alt="Dokumentation">
+        <a href="https://sonnytricky.github.io/HOMEBOT/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+            <img src="https://img.shields.io/badge/docs-github%20pages-181717?logo=githubpages&logoColor=white" alt="Dokumentation">
         </a>
         &nbsp;
-        <a href="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml">
+        <a href="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
             <img src="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg" alt="Deploy docs">
         </a>
         &nbsp;
-        <a href="https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE">
-            <img src="https://img.shields.io/github/license/sonnytricky/HOMEBOT" alt="License">
+        <a href="https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+            <img src="https://img.shields.io/github/license/sonnytricky/HOMEBOT?logo=open-source-initiative&logoColor=white" alt="License">
         </a>
     </p>
 </div>
