@@ -1,7 +1,7 @@
 ```
-BOT/
+HOMEBOT/
 │
-├── .docs/                         # Projektdokumentation
+├── .docs/                         # Projektweite-dokumentation
 │   ├── architecture/              # Architektur & technische Konzepte
 │   ├── setup/                     # Installations- und Einrichtungsanleitungen
 │   ├── development/               # Entwicklungsrichtlinien
@@ -27,6 +27,12 @@ BOT/
 │
 ├── .vscode/
 │   └── settings.json
+│
+├── docs/                          # Projektdokumentation über GH-Pages
+│   ├── index.md                   # Home-Seite
+│   ├── installation/              # Hilfe bei der Installation
+│   ├── setup/                     # Einrichtungs-Anleitungen
+│   └── testing/                   # wie und für was, welche tests sind
 │
 ├── src/
 │   │
