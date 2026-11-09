@@ -2,11 +2,11 @@
     <img src=".images/logo/repo-logo.png" alt="Logo" height="200">
     <h2>HOMEBOT</h2>
     <p><strong>persönlicher, modularer Home-/Server-Assistent</strong></p>
-    <p>
-        [![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://sonnytricky.github.io/HOMEBOT/)
-        [![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
-    </p>
 </div>
+
+[![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://sonnytricky.github.io/HOMEBOT/)
+[![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
+
 
 ---
 
