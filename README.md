@@ -23,6 +23,7 @@
 Eine ausführliche Dokumentation finden Sie auf der [Dokumentationswebsite](https://sonnytricky.github.io/HOMEBOT/).
 
 Es umfasst Anleitungen zu Installation, Administration, Nutzung, sowie weitere Hilfestellungen, um Ihnen den Einstieg zu erleichtern.
+
 ---
 
 ## Lizenz
