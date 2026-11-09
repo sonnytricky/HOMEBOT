@@ -1,23 +1,10 @@
 <div align="center">
-    <img src=".images/logo/repo-logo.png"
-            alt="Logo"
-            height="200">
-    <h2>
-        HOMEBOT
-    </h2>
+    <img src=".images/logo/repo-logo.png" alt="Logo" height="200">
+    <h2>HOMEBOT</h2>
+    <p><strong>persönlicher, modularer Home-/Server-Assistent</strong></p>
     <p>
-        <strong>persönlicher, modularer Home-/Server-Assistent</strong>
-    </p>
-    <p>
-        <a href="https://sonnytricky.github.io/HOMEBOT/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-            <img src="https://img.shields.io/badge/docs-github%20pages-blue.svg" alt="Dokumentation">
-        </a>
-        <a href="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-            <img src="https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg" alt="Deploy docs">
-        </a>
-        <a href="https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-            <img src="https://img.shields.io/github/license/sonnytricky/HOMEBOT" alt="License">
-        </a>
+        [![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://sonnytricky.github.io/HOMEBOT/)
+        [![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
     </p>
 </div>
 
