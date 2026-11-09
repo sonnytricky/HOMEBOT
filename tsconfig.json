@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES2022" /* Moderne JavaScript-Version für die Node-Laufzeit */,
+        "module": "commonjs" /* Ausgabeformat für CommonJS (passend zur package.json) */,
+        "rootDir": "./src" /* Quellcode-Ordner */,
+        "outDir": "./dist" /* Zielordner für den kompilierten JavaScript-Code */,
+        "strict": true /* Aktiviert alle strengen Typprüfungen (empfohlen) */,
+        "esModuleInterop": true /* Erlaubt den Import von CommonJS-Modulen wie ES-Module */,
+        "skipLibCheck": true /* Überspringt Typ-Prüfungen in node_modules (beschleunigt den Build) */,
+        "forceConsistentCasingInFileNames": true /* Verhindert Probleme bei Groß-/Kleinschreibung von Dateinamen */
+    },
+    "include": ["src/**/*"] /* Legt fest, dass alle Dateien in src/ kompiliert werden */
+}
