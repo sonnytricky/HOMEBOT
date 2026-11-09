@@ -19,7 +19,7 @@ python3 -m venv venv
 
 ### Aktivieren:
 
-* **Linux / macOS / Code-Server:**
+- **Linux / macOS / Code-Server:**
 
 ```bash
 source venv/bin/activate
@@ -92,8 +92,8 @@ zensical serve --host 0.0.0.0 --port 8080
 
 ## 7. Inhalte bearbeiten
 
-* `docs/index.md` → Startseite
-* `docs/markdown.md` → weitere Inhalte
+- `docs/index.md` → Startseite
+- `docs/markdown.md` → weitere Inhalte
 
 Beispiel:
 
@@ -119,9 +119,9 @@ site/
 
 Diesen kannst du hochladen zu:
 
-* GitHub Pages
-* Netlify
-* Vercel
+- GitHub Pages
+- Netlify
+- Vercel
 
 ---
 
@@ -143,12 +143,13 @@ deactivate
 
 # ⚠️ Typische Fehler & Tipps
 
-* ❌ **venv vergessen zu aktivieren** → Pakete landen global
-* ❌ **zensical new . in falschem Ordner** → Chaos 😅
-* ❌ **Port blockiert** → anderen Port nutzen
+- ❌ **venv vergessen zu aktivieren** → Pakete landen global
+- ❌ **zensical new . in falschem Ordner** → Chaos 😅
+- ❌ **Port blockiert** → anderen Port nutzen
 
 **Tipps** -> sollte man aus einem Grund die venv löschen müssen, unten die Anlleitung zum neuinstallieren:
-* ❌ **`sudo rm -R venv`** → wenn man die Venv im Projektordner löscht, muss man sie neu erstellen wie in Punkt 2 und anschließend die requirments.txt darin installieren.
+
+- ❌ **`sudo rm -R venv`** → wenn man die Venv im Projektordner löscht, muss man sie neu erstellen wie in Punkt 2 und anschließend die requirments.txt darin installieren.
 
 ---
 
@@ -165,5 +166,5 @@ deactivate
 ---
 
 # Lizenz
-Dieses Projekt steht unter der `GPL-3.0-or-later` Lizenz.
 
+Dieses Projekt steht unter der `GPL-3.0-or-later` Lizenz.
