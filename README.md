@@ -5,6 +5,7 @@
 </div>
 
 [![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://sonnytricky.github.io/HOMEBOT/)
+[![Format & Lint Check](https://github.com/sonnytricky/HOMEBOT/actions/workflows/format-check.yml/badge.svg)](https://github.com/sonnytricky/HOMEBOT/actions/workflows/format-check.yml)
 [![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
 
 ---
@@ -22,4 +23,5 @@ Es umfasst Anleitungen zu Installation, Administration, Nutzung, sowie weitere H
 ---
 
 ## Lizenz
+
 Dieses Projekt ist unter der MIT-Lizenz lizenziert. Den vollständigen Lizenztext finden Sie in der Datei [LICENSE](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE) .
