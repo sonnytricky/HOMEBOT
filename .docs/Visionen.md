@@ -1,7 +1,7 @@
 # Was das Projekt können soll:
 
 - docker-compose
-- **modulare** Bot 
+- **modulare** Bot
 - Lege **ein** Git-Repository für deinen Bot an, das den gesamten TS-Code (`core/`, `modules/`, etc.) sowie die `Dockerfile` enthält.
 
 - Wenn du deinen Code auf GitHub pushst, lässt du über GitHub Actions automatisch ein Docker-Image bauen und in die GitHub Container Registry (GHCR) pushen.
@@ -27,4 +27,3 @@
 1. Core und Modules trennen: Core enthält die Infrastruktur, Modules die eigentliche Bot-Logik.
 2. Integrationen kapseln: Externe APIs sollten nicht direkt überall im Projekt angesprochen werden.
 3. Jobs modular halten: Jeder Job sollte möglichst unabhängig funktionieren.
-

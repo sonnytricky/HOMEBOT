@@ -1,4 +1,5 @@
 ## Aktivieren:
+
 - **Linux / macOS / Code-Server:**
 
 ```bash
@@ -7,7 +8,7 @@ source .venv/bin/activate
 
 ---
 
-##  Projekt starten (Live-Vorschau)
+## Projekt starten (Live-Vorschau)
 
 ```bash
 zensical serve
@@ -26,4 +27,5 @@ zensical serve --host 0.0.0.0 --port 8080
 ```bash
 deactivate
 ```
+
 ---
