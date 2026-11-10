@@ -18,6 +18,7 @@
 /.cache/
 /venv/
 /.venv/
+/.notes/
 
 # /.Releases/
 # *.Releases/
@@ -34,7 +35,7 @@
 !*/.github/workflows/
 !*/.images/logo/
 !*/.images/screenshots/
-!*/.notes/**
+#!*/.notes/**
 !*/.vscode/
 !*/docs/**/
 !*/src/**/
@@ -60,6 +61,7 @@
 #!/.github/ISSUE_TEMPLATE/idea.md
 #!/.github/ISSUE_TEMPLATE/task.md
 !/.github/workflows/deploy.yml
+!/.github/workflows/format-check.yml
 !/.github/PULL_REQUEST_TEMPLATE.md
 # ========================================================================
 
@@ -69,7 +71,7 @@
 # ========================================================================
 
 # Notizen
-!/.notes/**
+#!/.notes/Visionen.md
 # ========================================================================
 
 !/.vscode/settings.json
@@ -109,3 +111,4 @@
 !tsconfig.json
 !zensical.toml
 # ========================================================================
+
