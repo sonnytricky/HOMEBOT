@@ -20,9 +20,7 @@ concurrency:
 
 jobs:
   validate:
-    name: Test and Build
-    # workflow_run kann auch bei fehlgeschlagenen Läufen ausgelöst werden.
-    # Deshalb explizit nur bei erfolgreichem Check auf main fortfahren.
+    name: Build Check
     if: >-
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.head_branch == 'main'
@@ -41,9 +39,6 @@ jobs:
 
       - name: npm-Abhängigkeiten installieren
         run: npm ci
-
-      - name: Jest-Tests ausführen
-        run: npm test -- --runInBand
 
       - name: TypeScript-Build ausführen
         run: npm run build
@@ -66,7 +61,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: SemVer-Version ermitteln
+      - name: SemVer-Version über Git-Tags ermitteln
         id: semver
         env:
           COMMIT_MESSAGE: ${{ github.event.workflow_run.head_commit.message }}
@@ -85,14 +80,18 @@ jobs:
             BUMP_TYPE="patch"
           fi
 
-          # Vorhandenen höchsten Versions-Tag verwenden.
-          LAST_TAG="$(git tag --list 'v[0-9]*' --sort=-version:refname | head -n 1)"
+          # Alle Tags holen und sicherstellen, dass sie getaggt sind
+          git fetch --tags --force || true
+
+          # Vorhandenen höchsten Versions-Tag verwenden (Fallback auf v0.0.0, falls keine Tags existieren)
+          LAST_TAG="$(git tag --list 'v[0-9]*' --sort=-version:refname | head -n 1 || true)"
 
           if [[ -n "$LAST_TAG" ]]; then
             BASE_VERSION="${LAST_TAG#v}"
+            echo "Letzter gefundenster Git-Tag: $LAST_TAG"
           else
-            # Beim ersten Release package.json als Ausgangsbasis verwenden.
-            BASE_VERSION="$(node -p "require('./package.json').version")"
+            BASE_VERSION="0.0.0"
+            echo "Kein Git-Tag gefunden. Verwende Startbasis: v0.0.0"
           fi
 
           if [[ ! "$BASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -141,8 +140,6 @@ jobs:
             dist package.json package-lock.json Dockerfile docker-compose.yml README.md LICENSE
 
           # Vollständiger, versionierter Quellcode aus genau dem geprüften Commit.
-          # Enthält alle von Git versionierten Projektdateien, aber keine lokalen
-          # node_modules-, Build- oder sonstigen unversionierten Dateien.
           git archive --format=tar --prefix="homebot-${RELEASE_VERSION}/" HEAD \
             | gzip -n > "homebot-${RELEASE_VERSION}-source.tar.gz"
 
