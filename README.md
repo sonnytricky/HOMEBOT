@@ -7,6 +7,7 @@
 [![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://sonnytricky.github.io/HOMEBOT/)
 [![Format & Lint Check](https://github.com/sonnytricky/HOMEBOT/actions/workflows/format-check.yml/badge.svg)](https://github.com/sonnytricky/HOMEBOT/actions/workflows/format-check.yml)
 [![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
+[![Release and Build Docker Image](https://github.com/sonnytricky/HOMEBOT/actions/workflows/release-and-build.yml/badge.svg)](https://github.com/sonnytricky/HOMEBOT/actions/workflows/release-and-build.yml)[![Release Version](https://img.shields.io/github/v/release/sonnytricky/HOMEBOT?color=blue&label=version)](https://github.com/sonnytricky/HOMEBOT/releases/latest)
 
 ---
 
