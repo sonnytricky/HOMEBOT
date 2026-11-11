@@ -107,6 +107,7 @@
 !.gitignore
 !.prettierignore
 !.prettierrc
+!docker-compose.yml
 !Dockerfile
 !jest.config.js
 !LICENSE
