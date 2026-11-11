@@ -61,6 +61,7 @@
 #!/.github/ISSUE_TEMPLATE/task.md
 !/.github/workflows/deploy.yml
 !/.github/workflows/format-check.yml
+!/.github/workflows/release-and-build.yml
 !/.github/PULL_REQUEST_TEMPLATE.md
 # ========================================================================
 
@@ -85,16 +86,20 @@
 # ========================================================================
 
 # src/
-!/src/core/
-!/src/jobs/
+!/src/core/scheduler.ts
+!/src/jobs/scheduled/test-job/index.ts
 !/src/modules/
 !/src/types/job.ts
 !/src/utils/notifier.ts
 !/src/utils/telegram.ts
+!/src/index.ts
 
+!/tests/run-manual-test.ts
+!/tests/scheduler.test.ts
 !/tests/test-email.ts
 !/tests/test-telegram.ts
 
+!.dockerignore
 !.env.example
 !.eslintignore
 !.eslintrc.json
@@ -102,6 +107,8 @@
 !.gitignore
 !.prettierignore
 !.prettierrc
+!Dockerfile
+!jest.config.js
 !LICENSE
 !package-lock.json
 !package.json
