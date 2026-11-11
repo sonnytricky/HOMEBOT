@@ -1,0 +1,47 @@
+# Abhängigkeiten
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build-Ausgaben & TypeScript-Kompilate
+dist/
+build/
+*.tsbuildinfo
+
+
+# Versionsverwaltung & IDEs
+.git/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+.cache/
+.docs/
+.github/
+.images/
+.notes/
+.venv/
+.vscode/
+docs/
+node_modules/
+site/
+.env
+.env.*
+!.env.example
+.eslintignore
+.eslintrc.json
+.gitattributes
+.gitignore
+.prettierignore
+.prettierrc
+jest.config.js
+README.md
+LICENSE
+
+# Für die Projekt DOKU
+requirements.txt
+zensical.toml
