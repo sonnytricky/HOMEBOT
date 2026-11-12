@@ -6,7 +6,9 @@ module.exports = {
     name: "Hallo Welt Test-Job",
     cronSchedule: "* * * * *",
     execute: async () => {
-        console.log("👋 Hallo! Dieser Job läuft aus dem externen Ordner außerhalb des Docker-Images.");
+        console.log(
+            "👋 Hallo! Dieser Job läuft aus dem externen Ordner außerhalb des Docker-Images."
+        );
         // Fügen Sie hier Ihre eigene Logik ein (z. B. Sensor-Abfragen, API-Calls)
-    }
+    },
 };

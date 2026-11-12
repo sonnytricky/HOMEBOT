@@ -9,7 +9,7 @@ async function bootstrap(): Promise<void> {
     const requiredDirs = [
         path.join(__dirname, "jobs/scheduled"),
         path.join(__dirname, "modules"),
-        path.join(__dirname, "utils")
+        path.join(__dirname, "utils"),
     ];
 
     for (const dir of requiredDirs) {

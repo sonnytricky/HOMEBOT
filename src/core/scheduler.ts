@@ -75,7 +75,11 @@ async function loadJobsFromDir(dirPath: string, isScheduledDir: boolean): Promis
             // Unterordner in 'scheduled/' (z.B. jobs/scheduled/mein-job/index.js)
             const jobPath = path.join(dirPath, entry.name);
             await loadSingleJobFile(jobPath, entry.name);
-        } else if (!entry.isDirectory() && !isScheduledDir && (entry.name.endsWith(".js") || entry.name.endsWith(".ts"))) {
+        } else if (
+            !entry.isDirectory() &&
+            !isScheduledDir &&
+            (entry.name.endsWith(".js") || entry.name.endsWith(".ts"))
+        ) {
             // Direkte Dateien in 'jobs/' (z.B. jobs/mein-testjob.js)
             const filePath = path.join(dirPath, entry.name);
             await loadSingleJobFile(path.dirname(filePath), entry.name, filePath);
@@ -83,7 +87,11 @@ async function loadJobsFromDir(dirPath: string, isScheduledDir: boolean): Promis
     }
 }
 
-async function loadSingleJobFile(jobFolderPath: string, identifier: string, explicitFile?: string): Promise<void> {
+async function loadSingleJobFile(
+    jobFolderPath: string,
+    identifier: string,
+    explicitFile?: string
+): Promise<void> {
     const entryFileJs = explicitFile || path.join(jobFolderPath, "index.js");
     const entryFileTs = explicitFile || path.join(jobFolderPath, "index.ts");
 
@@ -102,7 +110,9 @@ async function loadSingleJobFile(jobFolderPath: string, identifier: string, expl
                 const runOnStart = !job.cronSchedule || job.name.includes("Test");
                 scheduleJob(job, runOnStart);
             } else {
-                console.warn(`[Scheduler] Modul in "${identifier}" exportiert kein gültiges IJob-Objekt.`);
+                console.warn(
+                    `[Scheduler] Modul in "${identifier}" exportiert kein gültiges IJob-Objekt.`
+                );
             }
         }
     } catch (loadError) {
