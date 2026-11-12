@@ -11,7 +11,7 @@
 
 ---
 
->[!WARNING]
+> [!WARNING]
 > **⚠️ Work in Progress – Use at Your Own Risk**
 >
 > This project is currently under active development. Features, functionality, and APIs may change at any time. The project may contain bugs, incomplete features, or unexpected behavior.
@@ -28,12 +28,13 @@ Die Möglichkeiten von Apple Kurzbefehle sind zwar vielseitig, allerdings wurden
 
 HOMEBOT soll dabei nicht nur eine Alternative zu meinen bisherigen Kurzbefehlen sein, sondern langfristig zu einer zentralen Plattform für verschiedene Smart-Home- und Alltagsautomatisierungen werden.
 
-Neben der Umsetzung eigener Automatisierungen sollen nach und nach weitere Module entstehen, beispielsweise ein automatischer Müllabfuhr-Reminder (*Trash Reminder*), der rechtzeitig an anstehende Abholtermine erinnert.
+Neben der Umsetzung eigener Automatisierungen sollen nach und nach weitere Module entstehen, beispielsweise ein automatischer Müllabfuhr-Reminder (_Trash Reminder_), der rechtzeitig an anstehende Abholtermine erinnert.
 
 Das Projekt wird kontinuierlich weiterentwickelt und soll Raum für neue Ideen, Funktionen und individuelle Erweiterungen bieten.
 
 ---
-<!-- 
+
+<!--
 ## 🧩 Features
 Modulare Automatisierungen und Erweiterungen
 
@@ -41,7 +42,7 @@ Modulare Automatisierungen und Erweiterungen
 
 ## 📚 Dokumentation:
 
-Eine ausführliche Dokumentation findest du auf der  [Dokumentationswebsite](https://sonnytricky.github.io/HOMEBOT/).
+Eine ausführliche Dokumentation findest du auf der [Dokumentationswebsite](https://sonnytricky.github.io/HOMEBOT/).
 
 Sie umfasst Anleitungen zur Installation, Administration und Nutzung sowie weitere Hilfestellungen, um den Einstieg zu erleichtern.
 
