@@ -87,7 +87,9 @@
 
 # src/
 !/src/core/scheduler.ts
-!/src/jobs/scheduled/test-job/index.ts
+!/src/jobs/scheduled/
+!/src/jobs/hallo-welt-job.ts
+!/src/jobs/testjob.ts
 !/src/modules/
 !/src/types/job.ts
 !/src/utils/notifier.ts

@@ -1,205 +1,193 @@
 name: Release and Build Docker Image
 
 on:
-  # Startet erst, nachdem der Format-&-Lint-Workflow abgeschlossen ist.
-  workflow_run:
-    workflows:
-      - "Format & Lint Check"
-    types:
-      - completed
-    branches:
-      - main
+    push:
+        branches:
+            - main
+        paths:
+            - "src/**"
+            - "Dockerfile"
+            - "docker-compose.yml"
+            - "package.json"
+            - "package-lock.json"
 
 permissions:
-  contents: write
-  packages: write
+    contents: write
+    packages: write
 
 concurrency:
-  group: homebot-release-main
-  cancel-in-progress: false
+    group: homebot-release-main
+    cancel-in-progress: false
 
 jobs:
-  validate:
-    name: Build Check
-    if: >-
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Repository am geprüften Commit auschecken
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+    validate:
+        name: Build Check
+        runs-on: ubuntu-latest
+        steps:
+            - name: Repository auschecken
+              uses: actions/checkout@v4
 
-      - name: Node.js einrichten
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: npm
+            - name: Node.js einrichten
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: npm
 
-      - name: npm-Abhängigkeiten installieren
-        run: npm ci
+            - name: npm-Abhängigkeiten installieren
+              run: npm ci
 
-      - name: TypeScript-Build ausführen
-        run: npm run build
+            - name: TypeScript-Build ausführen
+              run: npm run build
 
-  create-release:
-    name: Create GitHub Release
-    needs: validate
-    runs-on: ubuntu-latest
-    outputs:
-      new_version: ${{ steps.semver.outputs.version }}
-    steps:
-      - name: Repository am geprüften Commit auschecken
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
-          fetch-depth: 0
+    create-release:
+        name: Create GitHub Release
+        needs: validate
+        runs-on: ubuntu-latest
+        outputs:
+            new_version: ${{ steps.semver.outputs.version }}
+        steps:
+            - name: Repository auschecken
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Git konfigurieren
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            - name: Git konfigurieren
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: SemVer-Version über Git-Tags ermitteln
-        id: semver
-        env:
-          COMMIT_MESSAGE: ${{ github.event.workflow_run.head_commit.message }}
-        shell: bash
-        run: |
-          set -euo pipefail
+            - name: SemVer-Version über Git-Tags ermitteln
+              id: semver
+              env:
+                  COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+              shell: bash
+              run: |
+                  set -euo pipefail
 
-          echo "Commit message: $COMMIT_MESSAGE"
+                  echo "Commit message: $COMMIT_MESSAGE"
 
-          BUMP_TYPE="patch"
-          if [[ "$COMMIT_MESSAGE" == *"[major]"* ]]; then
-            BUMP_TYPE="major"
-          elif [[ "$COMMIT_MESSAGE" == *"[minor]"* ]]; then
-            BUMP_TYPE="minor"
-          elif [[ "$COMMIT_MESSAGE" == *"[patch]"* ]]; then
-            BUMP_TYPE="patch"
-          fi
+                  BUMP_TYPE="patch"
+                  if [[ "$COMMIT_MESSAGE" == *"[major]"* ]]; then
+                    BUMP_TYPE="major"
+                  elif [[ "$COMMIT_MESSAGE" == *"[minor]"* ]]; then
+                    BUMP_TYPE="minor"
+                  elif [[ "$COMMIT_MESSAGE" == *"[patch]"* ]]; then
+                    BUMP_TYPE="patch"
+                  fi
 
-          # Alle Tags holen und sicherstellen, dass sie getaggt sind
-          git fetch --tags --force || true
+                  git fetch --tags --force || true
 
-          # Vorhandenen höchsten Versions-Tag verwenden (Fallback auf v0.0.0, falls keine Tags existieren)
-          LAST_TAG="$(git tag --list 'v[0-9]*' --sort=-version:refname | head -n 1 || true)"
+                  LAST_TAG="$(git tag --list 'v[0-9]*' --sort=-version:refname | head -n 1 || true)"
 
-          if [[ -n "$LAST_TAG" ]]; then
-            BASE_VERSION="${LAST_TAG#v}"
-            echo "Letzter gefundenster Git-Tag: $LAST_TAG"
-          else
-            BASE_VERSION="0.0.0"
-            echo "Kein Git-Tag gefunden. Verwende Startbasis: v0.0.0"
-          fi
+                  if [[ -n "$LAST_TAG" ]]; then
+                    BASE_VERSION="${LAST_TAG#v}"
+                    echo "Letzter gefundenster Git-Tag: $LAST_TAG"
+                  else
+                    BASE_VERSION="0.0.0"
+                    echo "Kein Git-Tag gefunden. Verwende Startbasis: v0.0.0"
+                  fi
 
-          if [[ ! "$BASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "::error::Ungültige Basisversion: $BASE_VERSION"
-            exit 1
-          fi
+                  if [[ ! "$BASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                    echo "::error::Ungültige Basisversion: $BASE_VERSION"
+                    exit 1
+                  fi
 
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$BASE_VERSION"
+                  IFS='.' read -r MAJOR MINOR PATCH <<< "$BASE_VERSION"
 
-          case "$BUMP_TYPE" in
-            major)
-              MAJOR=$((MAJOR + 1))
-              MINOR=0
-              PATCH=0
-              ;;
-            minor)
-              MINOR=$((MINOR + 1))
-              PATCH=0
-              ;;
-            patch)
-              PATCH=$((PATCH + 1))
-              ;;
-          esac
+                  case "$BUMP_TYPE" in
+                    major)
+                      MAJOR=$((MAJOR + 1))
+                      MINOR=0
+                      PATCH=0
+                      ;;
+                    minor)
+                      MINOR=$((MINOR + 1))
+                      PATCH=0
+                      ;;
+                    patch)
+                      PATCH=$((PATCH + 1))
+                      ;;
+                  esac
 
-          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+                  NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
 
-          if git rev-parse "$NEW_VERSION" >/dev/null 2>&1; then
-            echo "::error::Tag $NEW_VERSION existiert bereits."
-            exit 1
-          fi
+                  if git rev-parse "$NEW_VERSION" >/dev/null 2>&1; then
+                    echo "::error::Tag $NEW_VERSION existiert bereits."
+                    exit 1
+                  fi
 
-          echo "Bump type: $BUMP_TYPE"
-          echo "New version: $NEW_VERSION"
-          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+                  echo "Bump type: $BUMP_TYPE"
+                  echo "New version: $NEW_VERSION"
+                  echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Release-Artefakte erstellen
-        env:
-          RELEASE_VERSION: ${{ steps.semver.outputs.version }}
-        run: |
-          set -euo pipefail
-          npm ci
-          npm run build
+            - name: Release-Artefakte erstellen
+              env:
+                  RELEASE_VERSION: ${{ steps.semver.outputs.version }}
+              run: |
+                  set -euo pipefail
+                  npm ci
+                  npm run build
 
-          # Laufzeitpaket: kompilierte Anwendung plus benötigte Projekt-/Docker-Dateien.
-          tar -czf "homebot-${RELEASE_VERSION}-release.tar.gz" \
-            dist package.json package-lock.json Dockerfile docker-compose.yml README.md LICENSE
+                  tar -czf "homebot-${RELEASE_VERSION}-release.tar.gz" \
+                    dist package.json package-lock.json Dockerfile docker-compose.yml README.md LICENSE
 
-          # Vollständiger, versionierter Quellcode aus genau dem geprüften Commit.
-          git archive --format=tar --prefix="homebot-${RELEASE_VERSION}/" HEAD \
-            | gzip -n > "homebot-${RELEASE_VERSION}-source.tar.gz"
+                  git archive --format=tar --prefix="homebot-${RELEASE_VERSION}/" HEAD \
+                    | gzip -n > "homebot-${RELEASE_VERSION}-source.tar.gz"
 
-      - name: GitHub Release erstellen
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.semver.outputs.version }}
-          target_commitish: ${{ github.event.workflow_run.head_sha }}
-          name: HOMEBOT ${{ steps.semver.outputs.version }}
-          generate_release_notes: true
-          files: |
-            homebot-${{ steps.semver.outputs.version }}-release.tar.gz
-            homebot-${{ steps.semver.outputs.version }}-source.tar.gz
+            - name: GitHub Release erstellen
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ steps.semver.outputs.version }}
+                  name: ${{ steps.semver.outputs.version }}
+                  generate_release_notes: true
+                  files: |
+                      homebot-${{ steps.semver.outputs.version }}-release.tar.gz
+                      homebot-${{ steps.semver.outputs.version }}-source.tar.gz
 
-  build-and-push-docker:
-    name: Build and Push Docker Image
-    needs: create-release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Repository am Release-Commit auschecken
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+    build-and-push-docker:
+        name: Build and Push Docker Image
+        needs: create-release
+        runs-on: ubuntu-latest
+        steps:
+            - name: Repository auschecken
+              uses: actions/checkout@v4
 
-      - name: Image-Namen normalisieren
-        id: image
-        shell: bash
-        run: |
-          echo "name=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+            - name: Image-Namen normalisieren
+              id: image
+              shell: bash
+              run: |
+                  echo "name=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
 
-      - name: QEMU einrichten
-        uses: docker/setup-qemu-action@v3
+            - name: QEMU einrichten
+              uses: docker/setup-qemu-action@v3
 
-      - name: Docker Buildx einrichten
-        uses: docker/setup-buildx-action@v3
+            - name: Docker Buildx einrichten
+              uses: docker/setup-buildx-action@v3
 
-      - name: Bei GitHub Container Registry anmelden
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+            - name: Bei GitHub Container Registry anmelden
+              uses: docker/login-action@v3
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker-Metadaten erstellen
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ steps.image.outputs.name }}
-          tags: |
-            type=raw,value=${{ needs.create-release.outputs.new_version }}
-            type=raw,value=latest
-            type=sha,format=short
+            - name: Docker-Metadaten erstellen
+              id: meta
+              uses: docker/metadata-action@v5
+              with:
+                  images: ${{ steps.image.outputs.name }}
+                  tags: |
+                      type=raw,value=${{ needs.create-release.outputs.new_version }}
+                      type=raw,value=latest
+                      type=sha,format=short
 
-      - name: Docker-Image bauen und veröffentlichen
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+            - name: Docker-Image bauen und veröffentlichen
+              uses: docker/build-push-action@v6
+              with:
+                  context: .
+                  platforms: linux/amd64,linux/arm64
+                  push: true
+                  tags: ${{ steps.meta.outputs.tags }}
+                  labels: ${{ steps.meta.outputs.labels }}
+                  cache-from: type=gha
+                  cache-to: type=gha,mode=max

@@ -1,10 +1,10 @@
-import { IJob } from "../../../types/job";
-import { sendTelegramMessage } from "../../../utils/telegram";
-import { sendErrorEmail } from "../../../utils/notifier";
+import { IJob } from "../types/job";
+import { sendTelegramMessage } from "../utils/telegram";
+import { sendErrorEmail } from "../utils/notifier";
 
 const testJob: IJob = {
     name: "Einmal-Test-Job",
-    cronSchedule: "15 13 10 11 *", // Minute 15, Stunde 13, am 10. Tag, im 11. Monat (November)
+    cronSchedule: "* * * * *", // Läuft minütlich (oder leer lassen, wenn nur beim Start)
     async execute(): Promise<void> {
         console.log("[TestJob] Starte einmaligen Test-Job...");
 

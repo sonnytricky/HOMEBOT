@@ -1,33 +1,33 @@
 name: Format & Lint Check
 
 on:
-  push:
-    branches:
-      - dev
-      - main
-  pull_request:
-    branches:
-      - main
+    push:
+        branches:
+            - dev
+            - main
+    pull_request:
+        branches:
+            - main
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
+    check:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Repository auschecken
-        uses: actions/checkout@v4
+        steps:
+            - name: Repository auschecken
+              uses: actions/checkout@v4
 
-      - name: Node.js einrichten
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
+            - name: Node.js einrichten
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: "npm"
 
-      - name: Abhängigkeiten installieren
-        run: npm ci
+            - name: Abhängigkeiten installieren
+              run: npm ci
 
-      - name: Prettier Format-Check ausführen
-        run: npm run format:check
+            - name: Prettier Format-Check ausführen
+              run: npm run format:check
 
-      - name: ESLint Linter ausführen
-        run: npm run lint
+            - name: ESLint Linter ausführen
+              run: npm run lint
