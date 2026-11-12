@@ -1,12 +1,20 @@
 services:
-    assistant:
+    homebot:
         image: ghcr.io/sonnytricky/homebot:latest
-        container_name: bot
+        container_name: homebot
         restart: unless-stopped
         env_file:
-        - .env
+            - .env
         volumes:
-        - ./data:/app/data
+            # Externe Ordner auf den Host spiegeln, damit Sie Jobs manuell verwalten können
+            - ./jobs:/app/src/jobs
+            - ./modules:/app/src/modules
+            - ./utils:/app/src/utils
+            # Persistente Daten (z. B. für SQLite oder lokale DBs)
+            - ./data:/app/data
+        environment:
+            - NODE_ENV=production
+            - TZ=Europe/Vienna
         logging:
             driver: "json-file"
             options:
