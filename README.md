@@ -7,11 +7,11 @@
 [![Dokumentation](https://github.com/sonnytricky/HOMEBOT/actions/workflows/deploy.yml/badge.svg)](https://sonnytricky.github.io/HOMEBOT/)
 [![Format & Lint Check](https://github.com/sonnytricky/HOMEBOT/actions/workflows/format-check.yml/badge.svg)](https://github.com/sonnytricky/HOMEBOT/actions/workflows/format-check.yml)
 [![Release and Build Docker Image](https://github.com/sonnytricky/HOMEBOT/actions/workflows/release-and-build.yml/badge.svg)](https://github.com/sonnytricky/HOMEBOT/actions/workflows/release-and-build.yml) [![Release Version](https://img.shields.io/github/v/release/sonnytricky/HOMEBOT?color=blue&label=version)](https://github.com/sonnytricky/HOMEBOT/releases/latest)
-[![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/sonnytricky/HOMEBOT?color=orange)](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE)
 
 ---
 
->[!NOTE]
+>[!WARNING]
 > **⚠️ Work in Progress – Use at Your Own Risk**
 >
 > This project is currently under active development. Features, functionality, and APIs may change at any time. The project may contain bugs, incomplete features, or unexpected behavior.
@@ -20,9 +20,7 @@
 
 ---
 
----
-
-## Zweck
+## 🎯 Zweck
 
 HOMEBOT entstand aus dem Wunsch heraus, meine persönlichen Automatisierungen und Abläufe flexibler und übersichtlicher zu gestalten.
 
@@ -35,15 +33,20 @@ Neben der Umsetzung eigener Automatisierungen sollen nach und nach weitere Modul
 Das Projekt wird kontinuierlich weiterentwickelt und soll Raum für neue Ideen, Funktionen und individuelle Erweiterungen bieten.
 
 ---
+<!-- 
+## 🧩 Features
+Modulare Automatisierungen und Erweiterungen
 
-## Dokumentation:
+--- -->
 
-Eine ausführliche Dokumentation finden Sie auf der [Dokumentationswebsite](https://sonnytricky.github.io/HOMEBOT/).
+## 📚 Dokumentation:
 
-Es umfasst Anleitungen zu Installation, Administration, Nutzung, sowie weitere Hilfestellungen, um Ihnen den Einstieg zu erleichtern.
+Eine ausführliche Dokumentation findest du auf der  [Dokumentationswebsite](https://sonnytricky.github.io/HOMEBOT/).
+
+Sie umfasst Anleitungen zur Installation, Administration und Nutzung sowie weitere Hilfestellungen, um den Einstieg zu erleichtern.
 
 ---
 
-## Lizenz
+## 📄 Lizenz
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert. Den vollständigen Lizenztext finden Sie in der Datei [LICENSE](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE).
+Dieses Projekt ist unter der MIT-Lizenz lizenziert. Den vollständigen Lizenztext findest du in der Datei [LICENSE](https://github.com/sonnytricky/HOMEBOT/blob/main/LICENSE).
