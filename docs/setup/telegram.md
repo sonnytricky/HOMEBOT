@@ -17,11 +17,9 @@ npm install --save-dev @types/nodemailer ts-node
 
 3. **Bot bei Telegram erstellen**
 1. Suche in Telegram nach dem **BotFather** (`@BotFather`).
-2. Erstelle einen neuen Bot mit `/newbot` und folge den Anweisungen.
-3. Du erhältst ein **Bot-Token** (z. B. `123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ`).
-4. Ermittle deine **Chat-ID** (z. B. über den Bot `@userinfobot`), damit der Bot weiß, wem er die Nachricht schicken soll.
-
-
+1. Erstelle einen neuen Bot mit `/newbot` und folge den Anweisungen.
+1. Du erhältst ein **Bot-Token** (z. B. `123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ`).
+1. Ermittle deine **Chat-ID** (z. B. über den Bot `@userinfobot`), damit der Bot weiß, wem er die Nachricht schicken soll.
 
 ---
 
@@ -72,7 +70,6 @@ export async function sendTelegramMessage(message: string): Promise<void> {
         throw error;
     }
 }
-
 ```
 
 ---
@@ -101,7 +98,6 @@ async function runTelegramTest() {
 }
 
 runTelegramTest();
-
 ```
 
 ---

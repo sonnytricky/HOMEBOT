@@ -19,7 +19,7 @@ npm install --save-dev @types/nodemailer ts-node
 
 ---
 
-### 2.  `.env` Variablen ergänzen
+### 2. `.env` Variablen ergänzen
 
 Erstelle oder ergänze im Wurzelverzeichnis deines Projekts eine `.env`-Datei mit folgenden Parametern:
 
@@ -35,7 +35,7 @@ ERROR_EMAIL_RECEIVER=example1@gmail.com                            # Bekommt die
 
 ---
 
-### 3. Code-Datei 
+### 3. Code-Datei
 
 [notifier.ts](src/utils/notifier.ts)
 

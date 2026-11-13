@@ -1,12 +1,12 @@
 ---
-hide: 
+hide:
     - path
 ---
 
 # Einrichtung + Tests
 
-[SMTP - für Fehlermeldungen]()
+[SMTP - für Fehlermeldungen](<>)
 
-[Telegram - für Benachrichtigungen]()
+[Telegram - für Benachrichtigungen](<>)
 
-[Beispiel Job]()
+[Beispiel Job](<>)

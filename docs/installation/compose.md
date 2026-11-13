@@ -8,8 +8,8 @@ icon: simple/docker
 
 Der HomeBot läuft gekapselt in einem Docker-Container. Das fertige Image enthält bereits Node.js, alle Abhängigkeiten sowie den kompilierten Core.
 
-* **Zwei-Wege-Synchronisation (Bind Mounts):** Flexible Teile wie Jobs, Module und Utilities liegen außerhalb des Containers auf deinem Host-Server und werden in den Container gespiegelt.
-* **Rechte-Trennung:** Der Container läuft mit deiner Host-User-ID (`user: "${PUID}:${PGID}"`), sodass vom Bot oder dir erstellte Dateien stets die korrekten Dateirechte besitzen und ohne `sudo` bearbeitet werden können.
+- **Zwei-Wege-Synchronisation (Bind Mounts):** Flexible Teile wie Jobs, Module und Utilities liegen außerhalb des Containers auf deinem Host-Server und werden in den Container gespiegelt.
+- **Rechte-Trennung:** Der Container läuft mit deiner Host-User-ID (`user: "${PUID}:${PGID}"`), sodass vom Bot oder dir erstellte Dateien stets die korrekten Dateirechte besitzen und ohne `sudo` bearbeitet werden können.
 
 ---
 
@@ -61,7 +61,6 @@ services:
             options:
                 max-size: "10m"
                 max-file: "3"
-
 ```
 
 ### B Die `.env` bearbeiten
@@ -89,7 +88,7 @@ TZ=Europe/Vienna
 # (Token deines neuen HomeBots)
 TELEGRAM_BOT_TOKEN=dein_telegram_bot_token_hier
 # (Deine persönliche User-ID, nicht die des botes)
-TELEGRAM_CHAT_ID=deine_chat_id_hier 
+TELEGRAM_CHAT_ID=deine_chat_id_hier
 
 # =====================================================================
 # GMAIL
@@ -104,7 +103,7 @@ ERROR_EMAIL_RECEIVER=admin@domain.de
 # =====================================================================
 ```
 
-* **Nano Bedienung:** Speichern mit `Strg + O`, mit `Enter` bestätigen und Schließen mit `Strg + X`.
+- **Nano Bedienung:** Speichern mit `Strg + O`, mit `Enter` bestätigen und Schließen mit `Strg + X`.
 
 ---
 
@@ -131,38 +130,37 @@ docker compose up -d
 
 Um zu überwachen, ob der Job-Loader alle Jobs fehlerfrei einliest und ausführt:
 
-* **Live-Stream der Logs (Echtzeit):**
+- **Live-Stream der Logs (Echtzeit):**
+
 ```bash
 docker compose logs -f
 
 ```
 
+_(Verlassen des Streams mit `Strg + C` – der Bot läuft im Hintergrund weiter)._
 
-*(Verlassen des Streams mit `Strg + C` – der Bot läuft im Hintergrund weiter).*
-* **Die letzten 50 Log-Zeilen anzeigen:**
+- **Die letzten 50 Log-Zeilen anzeigen:**
+
 ```bash
 docker compose logs --tail=50
 
 ```
 
-
-
 ### Bot steuern (Neustart / Stoppen)
 
-* **Neu starten (z. B. nach Anpassung von Jobs):**
+- **Neu starten (z. B. nach Anpassung von Jobs):**
+
 ```bash
 docker compose restart
 
 ```
 
+- **Komplett stoppen:**
 
-* **Komplett stoppen:**
 ```bash
 docker compose down
 
 ```
-
-
 
 ---
 
@@ -171,15 +169,14 @@ docker compose down
 Der integrierte Job-Loader unterscheidet automatisch zwischen zwei Arten von Aufgaben:
 
 1. **Einmal-Jobs (`src/jobs/`):**
-* Direkt als `.ts`- oder `.js`-Datei (oder als Ordner mit `index.ts`) im Hauptordner `jobs/` abgelegt (z. B. `jobs/testjob.ts`).
-* Werden **genau einmal** beim Start des Containers ausgeführt.
 
+- Direkt als `.ts`- oder `.js`-Datei (oder als Ordner mit `index.ts`) im Hauptordner `jobs/` abgelegt (z. B. `jobs/testjob.ts`).
+- Werden **genau einmal** beim Start des Containers ausgeführt.
 
 2. **Geplante Cron-Jobs (`src/jobs/scheduled/`):**
-* Als Unterordner mit einer `index.ts` im Ordner `jobs/scheduled/` abgelegt.
-* Werden anhand des definierten Cron-Zeitplans (z. B. `0 18 * * *`) wiederkehrend vom Scheduler ausgeführt.
 
-
+- Als Unterordner mit einer `index.ts` im Ordner `jobs/scheduled/` abgelegt.
+- Werden anhand des definierten Cron-Zeitplans (z. B. `0 18 * * *`) wiederkehrend vom Scheduler ausgeführt.
 
 Jeder Job ist in einen Sicherheitsrahmen eingebettet: Erfolgreiche Ausführungen melden sich via Telegram, unerwartete Fehler werden automatisch abgefangen und als Benachrichtigung per E-Mail versendet.
 
