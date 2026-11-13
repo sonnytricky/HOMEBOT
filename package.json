@@ -1,26 +1,27 @@
 {
-    "name": "bot",
+    "name": "HOMEBOT",
     "version": "1.0.0",
     "description": "<div align=\"center\">     <img src=\".images/repo-logo.png\"          alt=\"Logo\"          height=\"200\">     <h2>       HOMEBOT     </h2>     <p>       <strong>persönlicher, modularer Home-/Server-Assistent</strong>     </p> </div>",
     "main": "dist/index.js",
     "scripts": {
         "lint": "eslint 'src/**/*.ts'",
-        "format": "prettier --write \"**/*.{ts,js,json,md,html,css}\"",
-        "format:check": "prettier --check \"**/*.{ts,js,json,md,html,css}\"",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write \"**/*.{ts,js,json,md,html,css,yml,yaml}\"",
+        "format:check": "prettier --check \"**/*.{ts,js,json,md,html,css,yml,yaml}\"",
         "build": "rimraf dist && tsc",
         "start": "node dist/index.js",
         "dev": "ts-node src/index.ts",
         "test:email": "ts-node tests/test-email.ts",
-        "test:telegram": "ts-node tests/test-telegram.ts"
+        "test:telegram": "ts-node tests/test-telegram.ts",
+        "test": "jest"
     },
     "repository": {
         "type": "git",
-        "url": "ssh://git@192.168.0.38:2222/openHub/BOT.git"
+        "url": "git@github.com:sonnytricky/HOMEBOT.git"
     },
     "keywords": [],
     "type": "commonjs",
     "devDependencies": {
+        "@types/jest": "^30.0.0",
         "@types/node": "^22.0.0",
         "@types/node-cron": "^3.0.11",
         "@types/nodemailer": "^6.4.15",
@@ -29,8 +30,10 @@
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.1.3",
-        "prettier": "^3.2.5",
+        "jest": "^30.5.2",
+        "prettier": "^3.10.1",
         "rimraf": "^6.1.4",
+        "ts-jest": "^29.4.15",
         "ts-node": "^10.9.2",
         "typescript": "~5.5.0"
     },
