@@ -1,5 +1,6 @@
 export interface IJob {
     name: string;
-    cronSchedule: string; // z.B. "0 7 * * *" (jeden Tag um 7 Uhr)
+    cronSchedule?: string; // Optional: Fehlt der Wert oder ist runOnce true, läuft er nicht per Cron
+    runOnce?: boolean; // Wenn true, wird der Job einmalig beim Start ausgeführt
     execute(): Promise<void>;
 }

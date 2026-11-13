@@ -1,19 +1,19 @@
 import { IJob } from "../types/job";
-import { sendTelegramMessage } from "../utils/telegram";
 import { sendErrorEmail } from "../utils/notifier";
+import { sendTelegramMessage } from "../utils/telegram";
 
 const testJob: IJob = {
     name: "Einmal-Test-Job",
-    cronSchedule: "* * * * *", // Läuft minütlich (oder leer lassen, wenn nur beim Start)
+    runOnce: true,
     async execute(): Promise<void> {
         console.log("[TestJob] Starte einmaligen Test-Job...");
 
-        // 1. Telegram-Nachricht senden
+        // Optional: Wenn der Test-Job selbst auch Telegram testen soll
         await sendTelegramMessage(
-            "🤖 *HomeBot Test-Job*\n\nDies ist die einmalige Test-Benachrichtigung für heute."
+            "🤖 *HomeBot Test-Job*\n\nDies ist die manuelle Telegram-Testnachricht aus dem Job."
         );
 
-        // 2. E-Mail senden
+        // E-Mail-Versand gezielt testen
         await sendErrorEmail(
             "Test-Job Statusmeldung",
             "Der einmalige Test-Job wurde erfolgreich ausgeführt."
