@@ -26,22 +26,18 @@ nav = [
     {"Home" = "index.md"},
 
     {"Installation" = [
-        "PROJEKTE/HOMELAB-DOKU/index.md",
-        "PROJEKTE/HOMELAB-DOKU/X600.md",
-        "PROJEKTE/HOMELAB-DOKU/Proxmox-gesamt.md",
+        "installation/index.md",
+        "installation/compose.md"
     ]},
 
-    {"Einrichtung" = [
-        "PROJEKTE/HOMELAB-DOKU/index.md",
-        "PROJEKTE/HOMELAB-DOKU/X600.md",
-        "PROJEKTE/HOMELAB-DOKU/Proxmox-gesamt.md",
+    {"Einrichtung + Tests" = [
+        "setup/index.md",
+        "setup/smtp.md",
+        "setup/telegram.md",
+        "setup/beispielJob.md",
     ]},
 
-    {"Tests" = [
-        "PROJEKTE/HOMELAB-DOKU/index.md",
-        "PROJEKTE/HOMELAB-DOKU/X600.md",
-        "PROJEKTE/HOMELAB-DOKU/Proxmox-gesamt.md",
-    ]},
+
 ]
 
 # ----------------------------------------------------------------------------
