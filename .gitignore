@@ -121,6 +121,7 @@
 !.prettierrc
 !docker-compose.yml
 !Dockerfile
+!entrypoint.sh
 !jest.config.js
 !LICENSE
 !package-lock.json

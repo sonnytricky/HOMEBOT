@@ -19,15 +19,24 @@ FROM node:22-alpine AS production
 ENV NODE_ENV=production
 WORKDIR /app
 
-# Nur Produktions-Abhängigkeiten installieren.
+# su-exec installieren, um im Entrypoint sauber von root auf PUID:PGID zu wechseln
+RUN apk add --no-cache su-exec
+
+# Produktions-Abhängigkeiten installieren
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev \
     && npm cache clean --force
 
-# Kompilierte Anwendung aus dem Builder übernehmen.
-COPY --from=builder --chown=node:node /app/dist ./dist
+# Kompilierte Anwendung aus dem Builder übernehmen
+COPY --from=builder /app/dist ./dist
 
-# Container nicht als root ausführen.
-USER node
+# Vorlagen-Verzeichnisse ins Image kopieren (falls Host-Ordner leer sind)
+# Hinweis: Falls der Ordner jobs/ im Repo existieren muss, lege dort mindestens eine .gitkeep oder deinen testJob ab
+COPY jobs/ /app/defaults/jobs/
 
+# Entrypoint-Skript kopieren und ausführbar machen
+COPY entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["node", "dist/index.js"]
