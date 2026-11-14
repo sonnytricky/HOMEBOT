@@ -34,7 +34,7 @@
 !*/.github/workflows/
 !*/.images/logo/
 !*/.images/screenshots/
-!*/.notes/**
+!*/.notes/**/
 !*/.vscode/
 !*/docs/**/
 !*/src/**/
@@ -71,7 +71,7 @@
 # ========================================================================
 
 # Notizen
-!/.notes/_RFC.md
+
 # ========================================================================
 
 !/.vscode/settings.json
@@ -82,10 +82,20 @@
 
 !/docs/assets/repo-logo.png
 !/docs/assets/images/favicon.png
+
+!/docs/installation/index.md
+!/docs/installation/compose.md
+
+!docs/setup/index.md
+!docs/setup/smtp.md
+!docs/setup/telegram.md
+!docs/setup/beispielJob.md
+
 !/docs/stylesheets/extra.css
 # ========================================================================
 
 # src/
+!/src/core/jobLoader.ts
 !/src/core/scheduler.ts
 !/src/jobs/scheduled/
 !/src/jobs/hallo-welt-job.ts

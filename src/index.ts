@@ -1,15 +1,18 @@
-import path from "path";
 import fs from "fs";
-import { loadAndRegisterAllJobs } from "./core/scheduler.js";
+import path from "path";
+import { loadAllJobs } from "./core/jobLoader";
+import { initScheduler } from "./core/scheduler";
 
-async function bootstrap(): Promise<void> {
-    console.log("[HomeBot] Starte System-Initialisierung...");
-
-    // Sicherstellen, dass die externen Ordner im Container existieren
+/**
+ * Stellt sicher, dass alle benötigten Ordner und Unterordner existieren
+ */
+function ensureDirectories(): void {
     const requiredDirs = [
+        path.join(__dirname, "jobs"),
         path.join(__dirname, "jobs/scheduled"),
         path.join(__dirname, "modules"),
         path.join(__dirname, "utils"),
+        path.join(process.cwd(), "data"), // Für ./data:/app/data
     ];
 
     for (const dir of requiredDirs) {
@@ -22,14 +25,23 @@ async function bootstrap(): Promise<void> {
             }
         }
     }
-
-    // Automatischen Job-Loader ausführen
-    await loadAndRegisterAllJobs();
-
-    console.log("[HomeBot] Alle Dienste erfolgreich gestartet und bereit.");
 }
 
-bootstrap().catch((error) => {
-    console.error("[HomeBot] Schwerwiegender Fehler beim Start:", error);
-    process.exit(1);
+async function main() {
+    console.log("🤖 HomeBot wird gestartet...");
+
+    // 1. Ordnerstruktur auf dem Host/Container sicherstellen
+    ensureDirectories();
+
+    // 2. Alle Jobs (Einmal-Jobs & Cron-Jobs) über den Loader einlesen
+    const jobs = await loadAllJobs();
+
+    // 3. Jobs an den Scheduler übergeben
+    initScheduler(jobs);
+
+    console.log("🚀 HomeBot Core läuft und wartet auf Cron-Trigger.");
+}
+
+main().catch((err) => {
+    console.error("Kritischer Fehler beim Starten des HomeBots:", err);
 });
