@@ -7,9 +7,9 @@ services:
         env_file:
             - .env
         volumes:
-            - ./jobs:/app/src/jobs
-            - ./modules:/app/src/modules
-            - ./utils:/app/src/utils
+            - ./jobs:/app/jobs
+            - ./modules:/app/modules
+            - ./utils:/app/utils
             - ./data:/app/data
         environment:
             - NODE_ENV=production
