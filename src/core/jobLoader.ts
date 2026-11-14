@@ -4,8 +4,7 @@ import { IJob } from "../types/job";
 import { sendErrorEmail } from "../utils/notifier";
 
 /**
- * Lädt Direkt-Jobs (Einmal-Jobs / manuelle Jobs / modulgetriggert) aus dem Ordner jobs/
- * Unterstützt sowohl einzelne .ts/.js Dateien als auch Unterordner mit index.ts/index.js
+ * Lädt Direkt-Jobs (Einmal-Jobs / manuelle Jobs) aus dem Ordner jobs/
  */
 export async function loadDirectJobs(): Promise<IJob[]> {
     const jobsDirectory = path.join(process.cwd(), "jobs");
@@ -19,12 +18,11 @@ export async function loadDirectJobs(): Promise<IJob[]> {
     const entries = fs.readdirSync(jobsDirectory, { withFileTypes: true });
 
     for (const entry of entries) {
-        // Den "scheduled"-Ordner überspringen, da dieser separat geladen wird
         if (entry.name === "scheduled") continue;
         if (entry.name.startsWith(".")) continue;
 
         const fullPath = path.join(jobsDirectory, entry.name);
-        let jobModule: any;
+        let jobModule: { default?: IJob } = {};
 
         try {
             if (entry.isFile() && (entry.name.endsWith(".ts") || entry.name.endsWith(".js"))) {
@@ -42,7 +40,7 @@ export async function loadDirectJobs(): Promise<IJob[]> {
 
             if (jobModule && jobModule.default) {
                 const job: IJob = jobModule.default;
-                job.runOnce = true; // Einmalige / manuelle Ausführung kennzeichnen
+                job.runOnce = true;
 
                 if (job.name && typeof job.execute === "function") {
                     loadedJobs.push(job);
@@ -88,7 +86,7 @@ export async function loadScheduledJobs(): Promise<IJob[]> {
             const entryFileJs = path.join(jobPath, "index.js");
 
             try {
-                let jobModule: any;
+                let jobModule: { default?: IJob } = {};
                 if (fs.existsSync(entryFile)) {
                     jobModule = await import(entryFile);
                 } else if (fs.existsSync(entryFileJs)) {
