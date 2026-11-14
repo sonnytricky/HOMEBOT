@@ -8,11 +8,11 @@ import { initScheduler } from "./core/scheduler";
  */
 function ensureDirectories(): void {
     const requiredDirs = [
-        path.join(__dirname, "jobs"),
-        path.join(__dirname, "jobs/scheduled"),
-        path.join(__dirname, "modules"),
-        path.join(__dirname, "utils"),
-        path.join(process.cwd(), "data"), // Für ./data:/app/data
+        path.join(process.cwd(), "jobs"),
+        path.join(process.cwd(), "jobs/scheduled"),
+        path.join(process.cwd(), "modules"),
+        path.join(process.cwd(), "utils"),
+        path.join(process.cwd(), "data"),
     ];
 
     for (const dir of requiredDirs) {
