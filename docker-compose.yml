@@ -7,10 +7,10 @@ services:
         env_file:
             - .env
         volumes:
-        - ./jobs:/app/jobs
-        - ./modules:/app/modules
-        - ./utils:/app/utils
-        - ./data:/app/data
+            - ./jobs:/app/jobs
+            - ./modules:/app/modules
+            - ./utils:/app/utils
+            - ./data:/app/data
         environment:
             - NODE_ENV=production
             - TZ=${TZ}
