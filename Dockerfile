@@ -32,7 +32,7 @@ COPY --from=builder /app/dist ./dist
 
 # Vorlagen-Verzeichnisse ins Image kopieren (falls Host-Ordner leer sind)
 # Hinweis: Falls der Ordner jobs/ im Repo existieren muss, lege dort mindestens eine .gitkeep oder deinen testJob ab
-COPY jobs/ /app/defaults/jobs/
+COPY src/jobs/ /app/defaults/jobs/
 
 # Entrypoint-Skript kopieren und ausführbar machen
 COPY entrypoint.sh /entrypoint.sh
