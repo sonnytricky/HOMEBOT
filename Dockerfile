@@ -39,4 +39,4 @@ RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 # Container startet als root, damit das entrypoint.sh chown/mkdir ausführen kann
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["node", "dist/index.js"]
+CMD ["node","--experimental-strip-types", "dist/index.js"]

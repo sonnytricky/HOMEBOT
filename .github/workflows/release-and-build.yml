@@ -129,7 +129,7 @@ jobs:
                   npm run build
 
                   tar -czf "homebot-${RELEASE_VERSION}-release.tar.gz" \
-                    dist package.json package-lock.json Dockerfile docker-compose.yml README.md LICENSE
+                    dist src package.json package-lock.json Dockerfile docker-compose.yml README.md LICENSE
 
                   git archive --format=tar --prefix="homebot-${RELEASE_VERSION}/" HEAD \
                     | gzip -n > "homebot-${RELEASE_VERSION}-source.tar.gz"

@@ -8,7 +8,7 @@ const testJob: IJob = {
     async execute(): Promise<void> {
         console.log("[TestJob] Starte einmaligen Test-Job...");
 
-        // Optional: Wenn der Test-Job selbst auch Telegram testen soll
+        // Telegram-Benachrichtigung testen
         await sendTelegramMessage(
             "🤖 *HomeBot Test-Job*\n\nDies ist die manuelle Telegram-Testnachricht aus dem Job."
         );
