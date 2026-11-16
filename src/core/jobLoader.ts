@@ -3,11 +3,14 @@ import path from "path";
 import { IJob } from "../types/job";
 import { sendErrorEmail } from "../utils/notifier";
 
+// Automatische Pfad-Ermittlung relativ zum Core-Ordner (greift auf src/jobs oder dist/jobs zu)
+const jobsDirectory = path.join(__dirname, "..", "jobs");
+const scheduledDirectory = path.join(jobsDirectory, "scheduled");
+
 /**
  * Lädt Direkt-Jobs (Einmal-Jobs / manuelle Jobs) aus dem Ordner jobs/
  */
 export async function loadDirectJobs(): Promise<IJob[]> {
-    const jobsDirectory = path.join(process.cwd(), "jobs");
     const loadedJobs: IJob[] = [];
 
     if (!fs.existsSync(jobsDirectory)) {
@@ -69,7 +72,6 @@ export async function loadDirectJobs(): Promise<IJob[]> {
  * Lädt geplante Cron-Jobs aus dem Unterordner jobs/scheduled/
  */
 export async function loadScheduledJobs(): Promise<IJob[]> {
-    const scheduledDirectory = path.join(process.cwd(), "jobs", "scheduled");
     const loadedJobs: IJob[] = [];
 
     if (!fs.existsSync(scheduledDirectory)) {

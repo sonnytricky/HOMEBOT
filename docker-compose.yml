@@ -3,17 +3,19 @@ services:
         image: ghcr.io/sonnytricky/homebot:latest
         container_name: homebot
         restart: unless-stopped
-        user: "${PUID}:${PGID}"
         env_file:
             - .env
         volumes:
-            - ./jobs:/app/jobs
-            - ./modules:/app/modules
-            - ./utils:/app/utils
+            - ./jobs:/app/dist/jobs
+            - ./modules:/app/dist/modules
+            - ./utils:/app/dist/utils
+            - ./types:/app/dist/types
             - ./data:/app/data
         environment:
             - NODE_ENV=production
             - TZ=${TZ}
+            - PUID=${PUID}
+            - PGID=${PGID}
         logging:
             driver: "json-file"
             options:
