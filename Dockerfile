@@ -1,25 +1,10 @@
-# --- Build Stage ---
-FROM node:22-alpine AS builder
-
-WORKDIR /app
-
-# Erst Manifest-Dateien kopieren, damit Docker den Dependency-Layer cachen kann.
-COPY package.json package-lock.json ./
-RUN npm ci
-
-# TypeScript-Quellcode und Konfiguration kopieren und kompilieren.
-COPY tsconfig.json ./
-COPY src/ ./src/
-RUN npm run build
-
-
 # --- Production Stage ---
 FROM node:22-alpine AS production
 
 ENV NODE_ENV=production
 WORKDIR /app
 
-# su-exec installieren, um im Entrypoint sauber von root auf PUID:PGID zu wechseln
+# su-exec für den Benutzerwechsel installieren
 RUN apk add --no-cache su-exec
 
 # Produktions-Abhängigkeiten installieren
@@ -30,13 +15,13 @@ RUN npm ci --omit=dev \
 # Kompilierte Anwendung aus dem Builder übernehmen
 COPY --from=builder /app/dist ./dist
 
-# Vorlagen-Verzeichnisse ins Image kopieren (falls Host-Ordner leer sind)
-# Hinweis: Falls der Ordner jobs/ im Repo existieren muss, lege dort mindestens eine .gitkeep oder deinen testJob ab
+# Standard-Jobs aus src/jobs/ als Vorlage ins Image kopieren
 COPY src/jobs/ /app/defaults/jobs/
 
-# Entrypoint-Skript kopieren und ausführbar machen
+# Entrypoint-Skript kopieren, Windows-Line-Endings entfernen und ausführbar machen
 COPY entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
+# Container startet als root, damit das entrypoint.sh chown/mkdir ausführen kann
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["node", "dist/index.js"]
